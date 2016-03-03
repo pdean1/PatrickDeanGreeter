@@ -8,18 +8,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
+    private Button reverseButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        reverseButton = (Button) this.findViewById(R.id.reverse_button);
+        reverseButton.setEnabled(false);
     }
 
     @Override
@@ -59,6 +61,19 @@ public class MainActivity extends AppCompatActivity {
         String name = greetEditText.getText().toString();
         String greeting = String.format("Hello, %s!", name);
 
+        TextView messageTextView =
+                (TextView) findViewById(R.id.message_text_view);
+
+        messageTextView.setText(greeting);
+        reverseButton.setEnabled(true);
+    }
+
+    public void didTapReverseButton(View view) {
+        EditText greetEditText =
+                (EditText) findViewById(R.id.greet_edit_text);
+
+        String name = greetEditText.getText().toString();
+        String greeting = String.format("Hello, %s!", name);
         TextView messageTextView =
                 (TextView) findViewById(R.id.message_text_view);
 

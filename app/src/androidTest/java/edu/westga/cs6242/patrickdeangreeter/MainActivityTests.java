@@ -35,4 +35,33 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
         String actualText = greetMessage.getText().toString();
         assertEquals("Hello, Patrick!", actualText);
     }
+
+    public void testReverseButtonDisabledOnStart() {
+        MainActivity a = getActivity();
+        final Button b = (Button) a.findViewById(R.id.reverse_button);
+        assertEquals(false, b.isEnabled());
+    }
+
+    public void testReverseButtonOnClickReversesText() {
+        MainActivity a = getActivity();
+        final EditText nameEditText = (EditText) a.findViewById(R.id.greet_edit_text);
+        getInstrumentation().runOnMainSync(new Runnable() {
+            @Override
+            public void run() {
+                nameEditText.requestFocus();
+            }
+        });
+        getInstrumentation().waitForIdleSync();
+        getInstrumentation().sendStringSync("Patrick");
+        getInstrumentation().waitForIdleSync();
+        Button greetButton = (Button) a.findViewById(R.id.greet_button);
+        TouchUtils.clickView(this, greetButton);
+        TextView greetMessage =
+                (TextView) a.findViewById(R.id.message_text_view);
+
+        final Button b = (Button) a.findViewById(R.id.reverse_button);
+        TouchUtils.clickView(this, b);
+        String actualText = greetMessage.getText().toString();
+        assertEquals("!kcirtaP ,olleH", actualText);
+    }
 }

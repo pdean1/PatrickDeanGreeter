@@ -28,6 +28,15 @@
         android:layout_centerHorizontal="true"
         android:onClick="didTapGreetButton"/>
 
+    <Button
+        android:id="@+id/reverse_button"
+        android:text="@string/greet_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/greet_edit_text"
+        android:layout_centerHorizontal="true"
+        android:onClick="didTapReverseButton"/>
+
     <TextView
         android:id="@+id/message_text_view"
         android:layout_width="match_parent"
