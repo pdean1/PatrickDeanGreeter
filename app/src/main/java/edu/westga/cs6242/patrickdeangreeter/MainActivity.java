@@ -74,9 +74,11 @@ public class MainActivity extends AppCompatActivity {
 
         String name = greetEditText.getText().toString();
         String greeting = String.format("Hello, %s!", name);
+        StringBuilder sb = new StringBuilder();
+        sb.append(greeting);
+        sb.reverse();
         TextView messageTextView =
                 (TextView) findViewById(R.id.message_text_view);
-
-        messageTextView.setText(greeting);
+        messageTextView.setText(sb.toString());
     }
 }
